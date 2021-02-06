@@ -16,4 +16,13 @@ def parseTweet(tweet):
     tokens = nltk.word_tokenize(tweet.text)
     # words list to dict with qty of words
 
-loadTweet('gg2013.json')
+def lowerTweet(tweet):
+    return tweet.lower()    
+
+def findIndexOfWord(tweet, word):
+    return tweet.lower().split().index(word)
+
+print(loadTweet('gg2013.json'))
+
+findIndexOfWord(loadTweet('gg2013.json'), "dress!")
+  
