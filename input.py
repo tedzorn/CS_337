@@ -1,5 +1,10 @@
+import nltk
+import os
 import json
-#import nltk
+import nltk.corpus
+import string
+from textblob import TextBlob
+
 
 AWARD_CATEGORY_NAMES = ['Best Motion Picture – Drama',
 'Best Motion Picture – Musical or Comedy',
@@ -37,7 +42,7 @@ def loadTweet(filename):
     tweets = []
     for item in raw_json:
         tweets.append(item['text'])
-    print(tweets[0])
+    return tweets[0]
 
 
 
@@ -52,6 +57,9 @@ def lowerTweet(tweet):
 def findIndexOfWord(tweet, word):
     return tweet.lower().split().index(word)
 
-print(loadTweet('gg2013.json'))
+def removePunctuation(tweet):
+    return tweet.translate(str.maketrans('', '', string.punctuation))
 
-findIndexOfWord(loadTweet('gg2013.json'), "dress!")
+print(loadTweet('gg2013.json'))
+print(findIndexOfWord(loadTweet('gg2013.json'), 'dress!'))
+print(lowerTweet(removePunctuation(loadTweet('gg2013.json'))))
